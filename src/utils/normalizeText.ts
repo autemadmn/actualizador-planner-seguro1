@@ -1,0 +1,2 @@
+export function normalizeText(input: unknown): string { if (input === null || input === undefined) return ""; return String(input).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim().toLowerCase(); }
+export function normalizeTextPreserveCase(input: unknown): string { if (input === null || input === undefined) return ""; return String(input).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim(); }

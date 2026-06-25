@@ -1,0 +1,1 @@
+export default function EmptyState({title,description}:{title:string;description?:string}){return <div className="empty"><p className="empty__title">{title}</p>{description&&<p>{description}</p>}</div>}

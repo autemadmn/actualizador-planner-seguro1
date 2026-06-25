@@ -1,0 +1,1 @@
+export default function ErrorAlert({message}:{message:string|null}){return message?<div role="alert" className="alert">{message}</div>:null}

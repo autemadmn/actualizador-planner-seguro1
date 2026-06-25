@@ -1,0 +1,7 @@
+import type { ComparedRow } from "../types/comparison";
+import type { MasterChangeCandidate, MasterChangeStatus } from "../types/master";
+import type { ParsedPlannerSheet, PlannerTaskRow } from "../types/excel";
+export function rowsFromPlannerSheet(parsedSheet: ParsedPlannerSheet | null): ComparedRow[] { return parsedSheet?.tasks.map(plannerTaskToComparedRow) ?? []; }
+function plannerTaskToComparedRow(task: PlannerTaskRow): ComparedRow { return { key:`planner-${task.excelRowNumber}`, status:"unchanged", planner:task, master:null, diffs:[], taskName:task.taskName, assignee:task.assignee, projectName:null, internalRowNumber:null }; }
+export function rowsFromMasterCandidates(candidates: MasterChangeCandidate[]): ComparedRow[] { return candidates.map(c=>({key:c.id,status:mapStatusForComparedRow(c.status),planner:null,master:null,diffs:c.changes.map(ch=>({field:ch.field,previous:ch.previous,current:ch.current})),blockedReason:c.reason,taskName:c.plannerTaskName||c.internalTaskName||"",assignee:c.plannerAssignee||c.internalAssignee||"",projectName:c.plannerProjectName??c.internalProject??null,internalRowNumber:c.internalRowNumber})); }
+function mapStatusForComparedRow(status: MasterChangeStatus): ComparedRow["status"] { if(status==="ready")return"changed"; if(status==="ambiguous")return"ambiguous"; if(status==="not_found"||status==="unmatched")return"unmatched"; if(status==="blocked"||status==="project_blocked")return"blocked"; return"unchanged"; }

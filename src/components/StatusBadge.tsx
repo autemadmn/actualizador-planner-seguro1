@@ -1,0 +1,1 @@
+export type StatusBadgeKind="ok"|"pending"|"error"|"info"|"neutral"; export default function StatusBadge({kind,label}:{kind:StatusBadgeKind;label:string}){return <span className={`badge badge--${kind}`}>{label}</span>}

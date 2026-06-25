@@ -1,0 +1,2 @@
+import FileChangeModal from "./FileChangeModal";
+export default function FileModal(props:{open:boolean;onClose:()=>void;onPickPlanner:(file:File)=>void;onPickMaster:(file:File)=>void;plannerFileName?:string|null;masterFileName?:string|null}){return <FileChangeModal open={props.open} plannerFileName={props.plannerFileName??null} masterFileName={props.masterFileName??null} onPickPlanner={props.onPickPlanner} onPickMaster={props.onPickMaster} onClose={props.onClose}/>}

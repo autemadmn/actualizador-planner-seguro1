@@ -1,0 +1,1 @@
+@import "./variables.css";*{box-sizing:border-box}html,body,#root{margin:0;height:100%}body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-family);font-size:13px}button,input,select{font-family:inherit}main{min-width:0}
